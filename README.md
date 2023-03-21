@@ -1,4 +1,4 @@
-Robocorp Assistant - ChatGPT XPath Guesser
+# Robocorp Assistant - ChatGPT XPath Guesser
 
 This robot uses RPA.Assistant and RPA.OpenAI libraries to create XPath locators for `Input` and/or `Button` web elements.
 
