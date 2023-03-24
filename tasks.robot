@@ -11,7 +11,7 @@ Library    String
 Suite Setup   Auth to OpenAI
 
 *** Variables ***
-${prompt}    Create the most reliable possible locators for all of the web elements in the html data. Prefer short and simple one's, but if the "id" or "name" value seems random and might be a dynamic value, prefer some other approach. Write the results into a really simple json file without any additional comments or characters. Give the locators good names based on programming best practices. Html: \n 
+${prompt}    Create the most reliable possible locators for all of the web elements in the html data. Prefer short and simple one's, but if the "id" or "name" value seems random and might be a dynamic value, prefer some other approach. Write the results into a simple json file without nesting or any additional comments or characters. Give the locators good names based on programming best practices. Html: \n 
 # Following prompt is very likely to produce non working locators in https://rpachallenge.com to demonstrate the conversational feature.
 #${prompt}    Find individual xpath locators based on the id attributes for all of the elements in the html data. Write the results into a json file without any additional comments. Give the locators good names. Html: \n 
 ${prompt_retry}    Following locators didn't work, try again with another strategy. Update the new locators to the json response without any additional info.
