@@ -1,4 +1,4 @@
-Robocorp Assistant - ChatGPT Html Selector Guesser
+# Robocorp Assistant - ChatGPT Html Selector Guesser
 
 This robot uses RPA.Assistant and RPA.OpenAI libraries to create XPath selectors for `Input` and/or `Button` web elements.
 
