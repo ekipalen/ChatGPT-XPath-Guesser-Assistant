@@ -11,14 +11,13 @@ Library    String
 Suite Setup   Auth to OpenAI
 
 *** Variables ***
-${prompt}    Create the most reliable possible locators for all of the web elements in the html data. Prefer short and simple one's, but if the "id" or "name" value seems random and might be a dynamic value, prefer some other approach. Write the results into a simple json file without nesting or any additional comments or characters. Give the locators good names based on programming best practices. Html: \n 
+#${prompt}    Create the most reliable possible xpath locators for all of the web elements in the html data. Prefer short and simple one's, but if the "id" or "name" value seems random and might be a dynamic value, prefer some other approach. Write the results into a simple json file without nesting or any additional comments or characters. Give the locators good names based on programming best practices. Html: \n 
 # Following prompt is very likely to produce non working locators in https://rpachallenge.com to demonstrate the conversational feature.
-#${prompt}    Find individual xpath locators based on the id attributes for all of the elements in the html data. Write the results into a json file without any additional comments. Give the locators good names. Html: \n 
-${prompt_retry}    Following locators didn't work, try again with another strategy. Update the new locators to the json response without any additional info.
+${prompt}    Find individual xpath locators based on the id attributes for all of the elements in the html data. Write the results into a json file without any additional comments. Give the locators good names. Html: \n 
+${prompt_retry}    Following locators didn't work, try again with another strategy. Update the new locators to the json response without any additional info or extra characters. Keep the json non nested and simple.
 &{xpath}       Buttons=//button    Inputs=//input    Buttons & Inputs=//input | //button
 ${correct_count}    ${0}
 ${locator_total_count}    ${0}
-${incorrect_existed}    no
 
 *** Tasks ***
 Minimal task
@@ -43,6 +42,8 @@ Display Main Menu
     # Let's clear the conversation history in the main page.
     ${conversation}    Set variable   None
     Set Suite Variable    ${conversation}
+    ${incorrect_existed}    Set Variable   no
+    Set Suite Variable    ${incorrect_existed} 
     Clear Dialog
     Add Image    ${CURDIR}${/}logo.png   width=40   height=40
     Add Heading    GPT - HTML selector Guesser
