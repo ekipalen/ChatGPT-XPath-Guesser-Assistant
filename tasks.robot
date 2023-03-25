@@ -18,6 +18,7 @@ ${prompt_retry}    Following locators didn't work, try again with another strate
 &{xpath}       Buttons=//button    Inputs=//input    Buttons & Inputs=//input | //button
 ${correct_count}    ${0}
 ${locator_total_count}    ${0}
+${commented_result}
 
 *** Tasks ***
 Minimal task
