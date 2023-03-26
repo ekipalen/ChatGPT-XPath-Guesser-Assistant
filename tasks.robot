@@ -92,7 +92,7 @@ Find the Elements
     ${counter}   Set Variable   ${0}
     Open Browser    url=${form}[input_url]
     Sleep   ${form}[sleep_time]
-    ${elements}   Get Elements    ${xpath}[${form}[locators]]  
+    ${elements}   Get Elements    ${xpath}[${form}[locators]] 
     ${element_count}    Get Element Count    ${xpath}[${form}[locators]]
     IF    ${element_count} > ${0}
         Create File    output/element_htmls.txt    overwrite=True
@@ -101,6 +101,7 @@ Find the Elements
             FOR    ${entity}    IN    @{entities}
                 IF  ${counter} < ${element_limit}
                     ${html}   Get Property   ${entity}    outerHTML
+                    RPA.Browser.Playwright.Highlight Elements    ${entity}    width=5px   style=solid   color=red
                     Append To File    output/element_htmls.txt    ${html}
                     ${counter}   Evaluate    ${counter}+1
                 END
