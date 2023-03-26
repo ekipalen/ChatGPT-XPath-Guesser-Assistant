@@ -116,9 +116,13 @@ Create first locators
     ${html}    Read File    output/element_htmls.txt
     Log To Console    \n\n Waiting for OpenAI \n   
     ${incorrect_existed}   Set Variable   no
-    ${response}    Chat Completion to get XPaths   ${prompt}   ${html} 
-    ${response}    Replace String   ${response}    \n\n    ${EMPTY}  
-    Create File    output/locators.json    ${response}    overwrite=True
+    TRY
+        ${response}    Chat Completion to get XPaths   ${prompt}   ${html} 
+        ${response}    Replace String   ${response}    \n\n    ${EMPTY}  
+        Create File    output/locators.json    ${response}    overwrite=True
+    EXCEPT
+        Error happened    ChatGPT gave an error.
+    END
     [Return]    ${response} 
 
 Chat Completion to get XPaths
@@ -137,7 +141,11 @@ Validate results
     ${url}   Get Url
     Run Keyword If    '${url}' == 'https://rpachallenge.com/'
     ...    Reload
-    &{json}    Convert String to JSON    ${response_from_GPT}
+    TRY
+        &{json}    Convert String to JSON    ${response_from_GPT}
+    EXCEPT    
+        Error happened    ChatGPT gave wrongly formatted response. 
+    END
     ${incorrect_locators}   Set Variable    ${EMPTY}
     ${commented_result}   Read File    output/locators.json
     FOR    ${x}    IN    @{json}
@@ -174,3 +182,13 @@ Retry Window
 Copy to Clipboard
     [Arguments]   ${response_from_GPT}
     Set Clipboard Value    ${response_from_GPT}   
+
+Error happened
+    [Arguments]    ${response}
+    Clear Dialog
+    Add Heading    Error   size=Medium
+    Add Text    ${response}
+    Add Next Ui Button    Back    Back To Main Menu
+    Refresh Dialog
+    Close Browser
+    
