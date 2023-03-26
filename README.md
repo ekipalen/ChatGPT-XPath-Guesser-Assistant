@@ -11,6 +11,8 @@ This Assistant Robot:
 - If incorrect selectors are found robot can continue the conversation with ChatGPT and ask for a fix for the non working selectors.
 - Creates a json file to the `output` folder and displays the content to the user.
 
+![XPath_Guesser](https://user-images.githubusercontent.com/84192057/227776612-f4af71a2-0073-4d25-b5d9-919874bb3e12.png)
+
 ## Learning materials
 
 - [Robocorp Developer Training Courses](https://robocorp.com/docs/courses)
