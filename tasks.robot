@@ -57,7 +57,8 @@ Display Main Menu
     Add Submit Buttons    buttons=Close    default=Close
 
 Back To Main Menu
-    [Arguments]   ${validated_result}
+    [Arguments]   ${form}
+    Run Keyword And Ignore Error    Close Browser
     Display Main Menu
     Refresh Dialog
 
